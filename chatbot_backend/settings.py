@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x($j8$*r9)0q*91$3)fn-%-c&b9@yr48_+kpp*k#f2p(+41=ge
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'e54d-88-1-72-161.eu.ngrok.io',
+    '5621-88-1-72-161.eu.ngrok.io',
     'localhost'
 ]
 
@@ -127,3 +127,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

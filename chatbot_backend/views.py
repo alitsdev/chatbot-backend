@@ -21,4 +21,5 @@ def chatUser_list(request, format=None):
         serializer = ChatUserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            ChatUser.send_email(request.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
