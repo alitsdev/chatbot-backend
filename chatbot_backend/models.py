@@ -1,7 +1,7 @@
 
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from .tasks import send_email_task
+from .tasks import send_email_task, send_assistance_email_task
 
 class ChatUser(models.Model):
     name = models.CharField(max_length=200)
@@ -18,7 +18,7 @@ class AssistanceRequest(models.Model):
     text = models.CharField(max_length = 500)
 
     def send_email(self):
-        send_email_task.delay(self['email'])
+        send_assistance_email_task.delay(self['text'])
 
     def __str__(self):
         return self.topic + ' ' + self.text

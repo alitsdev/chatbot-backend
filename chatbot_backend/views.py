@@ -35,9 +35,7 @@ def assistance_request(request, format=None):
             print('hola')
             print(request.data['topic'])
             if request.data['topic'] == 'sales':
-                print('sales')
+                AssistanceRequest.send_email(request.data)
             if request.data['topic'] == 'pricing':
                 print('pricing')
-            if request.data['topic'] == 'shipping':
-                print('shipping')
             return Response(serializer.data, status=status.HTTP_201_CREATED)

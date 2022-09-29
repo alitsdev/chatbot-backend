@@ -9,13 +9,20 @@ from celery import shared_task
 #@app.task(bind=True)
 @shared_task()
 def send_email_task(email):
-    print('hola')
-    print(email)
     sleep(60)
     send_mail(
         'Hello from Umishop',
         'Hello welcome to Umishop',
-        'from@example.com',
+        'from@umishop.com',
         [email],
+        fail_silently=False,
+    )
+@shared_task()
+def send_assistance_email_task(text):
+    send_mail(
+        'Sales assistance request',
+        text,
+        'assistancebot@umishop.com',
+        ['sales@umishop.com'],
         fail_silently=False,
     )
