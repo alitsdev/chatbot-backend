@@ -13,3 +13,12 @@ class ChatUser(models.Model):
 
     def __str__(self):
         return self.name + ' ' + self.email
+class AssistanceRequest(models.Model):
+    topic = models.CharField(max_length=200)
+    text = models.CharField(max_length = 500)
+
+    def send_email(self):
+        send_email_task.delay(self['email'])
+
+    def __str__(self):
+        return self.topic + ' ' + self.text
