@@ -16,7 +16,7 @@ def chatUser_list(request, format=None):
         serializer = ChatUserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            ChatUser.send_email(request.data)
+            ChatUser.send_email(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -32,10 +32,8 @@ def assistance_request(request, format=None):
         serializer = AssistanceRequestSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            print('hola')
-            print(request.data['topic'])
-            if request.data['topic'] == 'sales':
-                AssistanceRequest.send_email(request.data)
-            if request.data['topic'] == 'pricing':
-                AssistanceRequest.send_sms(request.data)
+            if serializer.data['topic'] == 'Sales':
+                AssistanceRequest.send_email(serializer.data)
+            if serializer.data['topic'] == 'Pricing':
+                AssistanceRequest.send_sms(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
