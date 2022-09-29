@@ -133,3 +133,5 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SMS_BACKEND = 'sms.backends.console.SmsBackend'

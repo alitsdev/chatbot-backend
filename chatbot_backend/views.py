@@ -37,5 +37,5 @@ def assistance_request(request, format=None):
             if request.data['topic'] == 'sales':
                 AssistanceRequest.send_email(request.data)
             if request.data['topic'] == 'pricing':
-                print('pricing')
+                AssistanceRequest.send_sms(request.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
